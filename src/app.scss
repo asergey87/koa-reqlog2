@@ -1,0 +1,71 @@
+$main-gap: 3px;
+$methods: (GET: #0f6ab4, POST: #10a54a, PUT: #c5862b, PATCH: #d38042, DELETE: #a41e22);
+
+// Color generator
+@each $method, $bgcolor in $methods {
+  .accordion[data-m-type=#{$method}] {
+    background-color: white;
+    border: .05rem solid #bcc3ce;
+    border-radius: .1rem;
+  }
+  .summ-method[data-m-type=#{$method}] {
+    background-color: $bgcolor;
+    color: white;
+  }
+}
+
+// Color generator
+
+body {
+  background-color: #f7f8f9;
+  padding: $main-gap;
+
+  .accordion input:checked ~ .accordion-body, .accordion[open] .accordion-body {
+    max-height: 100%;
+  }
+
+  code {
+    font-family: monospace;
+  }
+
+  .hoverable {
+    .column {
+      background-color: #f7f8f9;
+    }
+
+    &:hover > .column {
+      background-color: darken(#f7f8f9, 5%);
+    }
+  }
+
+  .container {
+    padding: 0.5rem;
+    box-sizing: border-box;
+
+    .accordion {
+      padding: .25rem 0.4rem;
+    }
+
+    details {
+      .accordion-header {
+        padding: 0;
+      }
+
+      .summary-title {
+        display: grid;
+        grid-template-columns: 90px 100px 5fr 3fr;
+        align-items: center;
+
+        span {
+          padding-left: 2px;
+          padding-right: 2px;
+        }
+      }
+
+      .accordion-body {
+        padding: .2rem 0;
+        margin-bottom: 0;
+      }
+    }
+  }
+}

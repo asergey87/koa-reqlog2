@@ -1,0 +1,17 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    title= title
+    link(rel="stylesheet", href="https://unpkg.com/spectre.css@0.5.9/dist/spectre.min.css")
+    link(rel="stylesheet", href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css")
+    link(rel="stylesheet", href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css")
+    script(src="https://unpkg.com/mithril@1.1.6/mithril.js")
+    style
+      include ../dist/app.css
+    script.
+      var api_url = '#{url}';
+  body
+    #app
+    script
+      include ../dist/app.js

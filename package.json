@@ -1,0 +1,41 @@
+{
+  "name": "koa-reqlog2",
+  "version": "1.0.0",
+  "description": "Simple middleware for view logs in KoaJS@2",
+  "homepage": "https://github.com/asergey87/koa-reqlog2",
+  "main": "index.js",
+  "scripts": {
+    "build": "node_modules/.bin/parcel build src/app.* --out-dir dist/ --no-source-maps",
+    "watch": "node_modules/.bin/parcel watch src/app.* --out-dir dist/ --no-source-maps --no-hmr",
+    "lint": "node_modules/.bin/eslint .",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:asergey87/koa-reqlog2.git"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Serhii Arendarchuk",
+    "email": "ipmazahell@gmail.com",
+    "url": "https://github.com/asergey87"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/mithril": "^2.0.3",
+    "eslint": "6.8.0",
+    "eslint-config-airbnb-base": "14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-mithril": "^0.2.0",
+    "koa": "^2.13.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-router": "^9.4.0",
+    "mocha": "^8.0.1",
+    "parcel-bundler": "^1.12.4",
+    "sass": "1.14.3",
+    "supertest": "^4.0.2"
+  },
+  "dependencies": {
+    "pug": "^3.0.0"
+  }
+}
