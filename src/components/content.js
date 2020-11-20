@@ -11,6 +11,10 @@ const ContentComponent = {
     }
   },
 
+  onupdate(vnode) {
+    this.requests = vnode.attrs.requests;
+  },
+
   selectRequest(rId) {
     m.route.param('idx', rId);
     m.route.set(`/${rId}`);
@@ -23,10 +27,9 @@ const ContentComponent = {
   view(vnode) {
     const q = vnode.attrs.q.toLowerCase();
     let filteredRequests = [];
-    if ('requests' in vnode.attrs.requests) {
+    if (vnode.attrs.requests.length) {
       filteredRequests = vnode
         .attrs
-        .requests
         .requests
         .filter(i => {
           if (q.length) {
