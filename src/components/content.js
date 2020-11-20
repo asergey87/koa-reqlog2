@@ -22,19 +22,23 @@ const ContentComponent = {
 
   view(vnode) {
     const q = vnode.attrs.q.toLowerCase();
-    const filteredRequests = vnode
-      .attrs
-      .requests
-      .filter(i => {
-        if (q.length) {
-          return i.requestId.toLowerCase().indexOf(q) !== -1
-            || i.request.path.toLowerCase().indexOf(q) !== -1
-            || i.method.toLowerCase().indexOf(q) !== -1
-            || String(i.httpStatus).toLowerCase().indexOf(q) !== -1
-            || JSON.stringify(i.response.body).toLowerCase().indexOf(q) !== -1;
-        }
-        return true;
-      });
+    let filteredRequests = [];
+    if ('requests' in vnode.attrs.requests) {
+      filteredRequests = vnode
+        .attrs
+        .requests
+        .requests
+        .filter(i => {
+          if (q.length) {
+            return i.requestId.toLowerCase().indexOf(q) !== -1
+              || i.request.path.toLowerCase().indexOf(q) !== -1
+              || i.method.toLowerCase().indexOf(q) !== -1
+              || String(i.httpStatus).toLowerCase().indexOf(q) !== -1
+              || JSON.stringify(i.response.body).toLowerCase().indexOf(q) !== -1;
+          }
+          return true;
+        });
+    }
 
     return m('.container.grid-lg', filteredRequests.map(r => {
       return m('details.accordion.mb-1', { 'data-m-type': r.method, open: this.openedRequests.has(r.requestId) }, [
@@ -79,8 +83,8 @@ const ContentComponent = {
                 m('.column.col-2.text-dark.text-right.text-small.text-bold', `${k}:`),
                 m('.column.col-10.text-dark.text-left.text-small.text-clip', r.request.query[k])
               ]))),
-            m('h4', { class: Object.keys(r.request.body).length === 0 ? 'd-none' : '' }, 'Payload'),
-            m('pre.code[data-lang="JSON"]', { class: Object.keys(r.request.body).length === 0 ? 'd-none' : '' }, [
+            m('h4', { class: 'request' in r && 'body' in r.request && Object.keys(r.request.body).length === 0 ? 'd-none' : '' }, 'Payload'),
+            m('pre.code[data-lang="JSON"]', { class: 'request' in r && 'body' in r.request && Object.keys(r.request.body).length === 0 ? 'd-none' : '' }, [
               // TODO: Check type of response : json or html
               m('code', JSON.stringify(r.request.body, null, 2))
             ])

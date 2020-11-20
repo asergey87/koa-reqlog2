@@ -15,7 +15,6 @@ class RootComponent {
         url: `${window.api_url}?json=1`
       })
       .then(result => {
-        // eslint-disable-next-line no-console
         this.requests = result.requests;
       })
       .catch(e => {
