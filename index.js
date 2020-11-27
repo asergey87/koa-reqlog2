@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 const pug = require('pug');
 
-let requests = [];
+const requests = [];
 
 /**
  * Http Request Log Middleware
@@ -45,7 +45,7 @@ module.exports = options => async (ctx, next) => {
           body: ctx.body || null
         }
       };
-      requests = [payload, ...requests];
+      requests.push(payload);
       requests.splice(0, requests.length - maxItems);
     }
   });
